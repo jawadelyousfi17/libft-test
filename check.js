@@ -200,48 +200,56 @@ async function start(choice, makeFileChoice) {
       });
     })
   } else {
-    console.log(blue, bold, "\r⚙️  Compiling...");
-    exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + src_folder + 'libft.a' + fsanitize_flag, (error, stdout, stderr) => {
-      // if (error) {
-      //   console.error(bold, `\rError: \n${error.message}`);
-      //   return;
-      // }
-      if (stderr) {
-        if (stderr.includes("Assertion")) {
-          const functionNameRegex = /ft_(\w+)/;
-
-          // Extract the function name
-          const match = stderr.match(functionNameRegex);
-
-          console.log("❌ Test failed due to an assertion error");
-          if (match && match[1]) {
-            console.log(`In function: ${match[0]}`);
-          } else {
-            console.log("Function name could not be extracted.");
-          }
-        } else {
-          console.log("⚠️ An error occurred:");
-        }
-        console.error(`❗ ERROR MESSAGE :`, reset, ` ${stderr}`);
-        return;
+    checkFileExists(src_folder+'libft.a').then((f_exist) => {
+      if (!f_exist) {
+        console.log("❌ libfta.a not found in : ",src_folder+'libft.a');
+        console.log(reset,"Make sure you have libft.a");
+        process.exit(0);
       }
-      if (stdout)
-        console.log(`${stdout}`);
-      console.log(green, "\r✅ Compiled!");
-      console.log(blue, "\r⚙️  Running...");
-      exec('./a.out -f', (error, stdout, stderr) => {
-        if (error) {
-          console.error(`Error: ${error.message}`);
-          return;
-        }
+      console.log(blue, bold, "\r⚙️  Compiling...");
+      exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + src_folder + 'libft.a ' + fsanitize_flag, (error, stdout, stderr) => {
+        // if (error) {
+        //   console.error(bold, `\rError: \n${error.message}`);
+        //   return;
+        // }
         if (stderr) {
-          console.error(`stderr: ${stderr}`);
+          if (stderr.includes("Assertion")) {
+            const functionNameRegex = /ft_(\w+)/;
+  
+            // Extract the function name
+            const match = stderr.match(functionNameRegex);
+  
+            console.log("❌ Test failed due to an assertion error");
+            if (match && match[1]) {
+              console.log(`In function: ${match[0]}`);
+            } else {
+              console.log("Function name could not be extracted.");
+            }
+          } else {
+            console.log("⚠️ An error occurred:");
+          }
+          console.error(`❗ ERROR MESSAGE :`, reset, ` ${stderr}`);
           return;
         }
         if (stdout)
           console.log(`${stdout}`);
+        console.log(green, "\r✅ Compiled!");
+        console.log(blue, "\r⚙️  Running...");
+        exec('./a.out -f', (error, stdout, stderr) => {
+          if (error) {
+            console.error(`Error: ${error.message}`);
+            return;
+          }
+          if (stderr) {
+            console.error(`stderr: ${stderr}`);
+            return;
+          }
+          if (stdout)
+            console.log(`${stdout}`);
+        });
       });
-    });
+    })
+   
   }
 
 }
