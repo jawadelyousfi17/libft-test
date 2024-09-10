@@ -64,6 +64,7 @@ To use the tools in this repository, you need to have Node.js installed on your 
    ```bash
     npm run test [directory]
 remplace [directory] with th name of you folder e.g. : $npm run test src
+
 Make sur to copy all your source files in the current directory and run.
 
 ## Notes
