@@ -11,7 +11,7 @@ To use the tools in this repository, you need to have Node.js installed on your 
 #### For Linux 🐧
 
 1. **Update your package list**:
-   $ sudo apt update
+   ```sh sudo apt update ``
 
 2. **Install Node.js**:
    $ sudo apt install nodejs npm
