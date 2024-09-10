@@ -13,7 +13,7 @@ To use the tools in this repository, you need to have Node.js installed on your 
 1. **Update your package list**:
    ```bash
     sudo apt update
-   ``
+   
 
 3. **Install Node.js**:
    $ sudo apt install nodejs npm
