@@ -6,7 +6,7 @@
 
 #js
 /node_modules
-
+/src
 # Object files
 *.o
 *.ko

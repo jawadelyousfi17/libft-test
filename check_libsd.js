@@ -56,7 +56,23 @@ function printInstallationInstructions() {
     }
   }
 
+  /**
+ * Ensure the given string ends with a '/'.
+ * @param {string} str - The input string.
+ * @returns {string} - The input string with a trailing '/' if it wasn't there already.
+ */
+function ensureTrailingSlash(str) {
+  // Check if the string already ends with a '/'
+  if (str.endsWith('/')) {
+    return str; // Return the string as is if it ends with '/'
+  }
+  
+  // Append a '/' to the end of the string
+  return str + '/';
+}
+
 module.exports = {
     isLibbsdInstalled,
+    ensureTrailingSlash,
     printInstallationInstructions
   };

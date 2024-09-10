@@ -2,8 +2,21 @@ const readline = require('readline');
 const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const { isLibbsdInstalled, printInstallationInstructions } = require('./check_libsd');
+const { isLibbsdInstalled, printInstallationInstructions, ensureTrailingSlash } = require('./check_libsd');
 const os = require('os');
+
+
+const args = process.argv.slice(2); // Extract arguments
+
+console.log(args[0]);
+
+
+
+
+let src_folder = args[0] ? args[0] :  '/';
+src_folder = ensureTrailingSlash(src_folder);
+const make_command = src_folder ? 'make -C ' + src_folder : 'make'
+const make_clean_command = src_folder ? 'make clean -C ' + src_folder : 'make clean'
 
 // Array of file paths to check
 const filesToCheck = [
@@ -51,6 +64,13 @@ const testFunctionsFiles = [
   'test_ft_memcpy.c',
   'test_ft_memmove.c'
 ]
+
+//update File to check
+filesToCheck.forEach((fileName, index) => {
+  filesToCheck[index] = src_folder + fileName;
+})
+console.log(filesToCheck)
+
 const pathToTestsFunction = 'tests/test_functions/'
 let allTestsFunctionsCommand = '';
 testFunctionsFiles.forEach(testFunction => {
@@ -112,7 +132,7 @@ async function start(choice, makeFileChoice) {
         process.exit(0); // 0 indicates success
       }
       console.log(green, bold, "\r✅ All files exist");
-      exec('make', (error, stdout, stderr) => {
+      exec(make_command, (error, stdout, stderr) => {
         //console.log("\r")
         console.log(blue, bold, "\r⚙️  Executing make ...")
         if (error) {
@@ -125,11 +145,11 @@ async function start(choice, makeFileChoice) {
         }
         if (stdout) { }
         console.log(green, bold, "\r✅ sucess!");
-        exec('make clean', (error, stdout, stderr) => {
+        exec(make_clean_command, (error, stdout, stderr) => {
         })
         console.log(blue, bold, "\r⚙️  Cleaning...");
         console.log(blue, bold, "\r⚙️  Compiling...");
-        exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + 'libft.a tests/libs/libmysd.a -lbsd ' + fsanitize_flag, (error, stdout, stderr) => {
+        exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + src_folder + 'libft.a' +' tests/libs/libmysd.a -lbsd ' + fsanitize_flag, (error, stdout, stderr) => {
           if (error) {
             console.error(bold, `\rError: \n${error.message}`);
             return;
@@ -174,7 +194,7 @@ async function start(choice, makeFileChoice) {
     })
   } else {
     console.log(blue, bold, "\r⚙️  Compiling...");
-    exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + 'libft.a -lbsd ' + fsanitize_flag, (error, stdout, stderr) => {
+    exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand +  src_folder + 'libft.a' + fsanitize_flag, (error, stdout, stderr) => {
       // if (error) {
       //   console.error(bold, `\rError: \n${error.message}`);
       //   return;
