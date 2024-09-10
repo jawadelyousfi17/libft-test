@@ -16,23 +16,28 @@ To use the tools in this repository, you need to have Node.js installed on your 
    
 
 3. **Install Node.js**:
-   $ sudo apt install nodejs npm
+   ```bash
+    sudo apt install nodejs npm
 
 4. **Verify the installation**:
-   $ node -v
-   $ npm -v
+   ```bash
+   node -v
+   npm -v
 
 #### For macOS 🍏
 
 1. **Install Homebrew** (if not already installed):
-   $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 2. **Install Node.js**:
-   $ brew install node
+   ```bash
+    brew install node
 
 3. **Verify the installation**:
-   $ node -v
-   $ npm -v
+   ```bash
+    node -v
+    npm -v
 
 #### For Windows 🪟
 
@@ -44,16 +49,20 @@ To use the tools in this repository, you need to have Node.js installed on your 
 ## Getting Started
 
 1. **Clone the repository**:
-   $ git clone https://github.com/jawadelyousfi17/libft-test.git
+   ```bash
+    git clone https://github.com/jawadelyousfi17/libft-test.git
 
 2. **Navigate to the project directory**:
-   $ cd libft-test
+   ```bash
+    cd libft-test
 
 3. **Install dependencies**:
-   $ npm install
+   ```bash
+    npm install
 
 4. **Run tests**:
-   $ npm run test
+   ```bash
+    npm run test
 
 ## Notes
 
