@@ -13,8 +13,15 @@ console.log(args[0]);
 
 
 
-let src_folder = args[0] ? args[0] :  '/';
+let src_folder = args[0] ? args[0] : '/';
 src_folder = ensureTrailingSlash(src_folder);
+// Define the path to the src directory
+const srcPath = path.join(__dirname, src_folder);
+// Check if the directory exists
+if (!fs.existsSync(srcPath)) {
+  console.error(`Directory ${src_folder} does not exist.`);
+  process.exit(1);
+}
 const make_command = src_folder ? 'make -C ' + src_folder : 'make'
 const make_clean_command = src_folder ? 'make clean -C ' + src_folder : 'make clean'
 
@@ -149,7 +156,7 @@ async function start(choice, makeFileChoice) {
         })
         console.log(blue, bold, "\r⚙️  Cleaning...");
         console.log(blue, bold, "\r⚙️  Compiling...");
-        exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + src_folder + 'libft.a' +' tests/libs/libmysd.a -lbsd ' + fsanitize_flag, (error, stdout, stderr) => {
+        exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + src_folder + 'libft.a' + ' tests/libs/libmysd.a -lbsd ' + fsanitize_flag, (error, stdout, stderr) => {
           if (error) {
             console.error(bold, `\rError: \n${error.message}`);
             return;
@@ -194,7 +201,7 @@ async function start(choice, makeFileChoice) {
     })
   } else {
     console.log(blue, bold, "\r⚙️  Compiling...");
-    exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand +  src_folder + 'libft.a' + fsanitize_flag, (error, stdout, stderr) => {
+    exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + src_folder + 'libft.a' + fsanitize_flag, (error, stdout, stderr) => {
       // if (error) {
       //   console.error(bold, `\rError: \n${error.message}`);
       //   return;
@@ -262,10 +269,9 @@ console.log(blue, '\r', `
   "If you encounter any issues or bugs,\n",
   "please report them on the GitHub page.\n");
 
-if (os.platform == 'win32')
-{
+if (os.platform == 'win32') {
   console.log("❌ Sorry, this can't be run on Windows.\nPlease use a 🐧 Unix-based system like Linux or macOS.");
-  console.log(reset,"\rFor Windows users, you can install WSL (Windows Subsystem for Linux) to run Unix-based commands: ",blue,"https://learn.microsoft.com/en-us/windows/wsl/install",reset)
+  console.log(reset, "\rFor Windows users, you can install WSL (Windows Subsystem for Linux) to run Unix-based commands: ", blue, "https://learn.microsoft.com/en-us/windows/wsl/install", reset)
   process.exit(0);
 }
 
@@ -277,7 +283,7 @@ isLibbsdInstalled((isInstalled) => {
     process.exit(0);
   }
   console.log(bold, blue, '\r=== Please select an option or press ENTER for default ==== ');
-  console.log(reset, '\r1. Compile with ', bold, '-fsanitize=address ',yellow,'( default )');
+  console.log(reset, '\r1. Compile with ', bold, '-fsanitize=address ', yellow, '( default )');
   console.log(reset, '\r2. Compile ', bold, 'without -fsanitize=address');
   rl.question('Enter your choice (1 or 2): ', (answer) => {
     let flags = 1;
@@ -294,7 +300,7 @@ isLibbsdInstalled((isInstalled) => {
         break;
     }
     //console.log(bold, blue, '\r\n=== Please select an option or press ENTER for default ==== ');
-    console.log(yellow, '\r1. (default)',reset,' Run ', bold, 'make', reset, 'command to generate libft.a then Test it ? (All Funcions source must be included)');
+    console.log(yellow, '\r1. (default)', reset, ' Run ', bold, 'make', reset, 'command to generate libft.a then Test it ? (All Funcions source must be included)');
     console.log(reset, '\r2. You already have', bold, 'libft.a', reset, 'just test it', bold);
     rl.question('Enter your choice (1 or 2 or ENTER for default): ', answer => {
       switch (answer) {
