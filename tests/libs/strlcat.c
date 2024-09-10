@@ -6,13 +6,12 @@ size_t strlcat(char *dst, const char *src, size_t dstsize) {
     size_t i;
 
     if (dstsize <= dst_len) {
-        return (dstsize + src_len);  // Not enough space in dst
+        return (dstsize + src_len); 
     }
-
     for (i = 0; i < (dstsize - dst_len - 1) && src[i] != '\0'; i++) {
         dst[dst_len + i] = src[i];
     }
-    dst[dst_len + i] = '\0';  // Null-terminate the result
+    dst[dst_len + i] = '\0';  
 
     return (dst_len + src_len);
 }
