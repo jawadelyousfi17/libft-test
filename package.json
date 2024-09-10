@@ -4,7 +4,6 @@
     "inquirer": "^10.2.2"
   },
   "scripts": {
-    "check": "node check.js",
-    "start": "node run.js"
+    "test": "node check.js"
   }
 }

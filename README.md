@@ -1,24 +1,77 @@
-## Dependencies
+# libft-test
 
-To compile and use this project, you might need to include `<bsd/string.h>`. If you encounter any issues related to this header file, you may need to install the `libbsd` library.
+Welcome to the `libft-test` repository!
+
+## Requirements
+
+To use the tools in this repository, you need to have Node.js installed on your system. If you do not have Node.js installed, please follow the instructions below for your operating system.
 
 ### Installation Instructions
 
-For Debian-based systems (e.g., Ubuntu), you can install the `libbsd` library using the following command:
-Open a terminal and run the following command:
+#### For Linux 🐧
 
+1. **Update your package list**:
    ```sh
-   sudo apt-get update
-   sudo apt-get install libbsd-dev
+   sudo apt update
 ```
-For macOS, you can use Homebrew:
+2. **Install Node.js**:
+   ```sh
+   sudo apt install nodejs npm
+```
+3. **Verify the installation**:
+   ```sh
+   node -v
+   npm -v
+```
+#### For macOS 🍏
 
-```sh
-brew install libbsd
+1. **Install Homebrew** (if not already installed):
+   ```sh
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install```sh)"
 ```
+2. **Install Node.js**:
+   ```sh
+   brew install node
+```
+3. **Verify the installation**:
+   ```sh
+   node -v
+   npm -v
+   ```
+#### For Windows 🪟
 
-Next compile your tests/main.c 
-Example
-```sh
-gcc tests/main.c libft.a -lbsd
+1. **Install WSL (Windows Subsystem for Linux)**:
+   You can install WSL by following the instructions here: [WSL Installation Guide](https://learn.microsoft.com/en-us/windows/wsl/install)
+
+2. **Open WSL and follow the Linux installation instructions**.
+
+## Getting Started
+
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/jawadelyousfi17/libft-test.git
+   ```
+2. **Navigate to the project directory**:
+   ```sh
+   cd libft-test
+
+3. **Install dependencies**:
+   ```sh
+   npm install
 ```
+4. **Run tests**:
+   ```sh
+   npm run test
+```
+## Notes
+
+- If you encounter issues with missing dependencies, ensure that all required libraries are installed.
+- If you see an error related to `pkg-config` or any other package, you can use the instructions provided in the terminal message to install the necessary packages for your system.
+
+## Contributing
+
+If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request. Your contributions are welcome!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
