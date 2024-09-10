@@ -93,6 +93,10 @@ int main(int ac, char *av[])
     WAIT(duration);
     test_ft_memmove();
     WAIT(duration);
+     test_ft_calloc();
+    test_ft_strdup();
+    test_ft_memchr();
+    test_ft_bzero();
     printf("\033[1;32m"
            "\n\n"
            "██████╗  ██████╗ ███╗   ██╗███████╗\n"

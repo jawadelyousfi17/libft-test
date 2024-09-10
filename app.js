@@ -42,6 +42,10 @@ const filesToCheck = [
   'ft_strlcpy.c',
   'ft_strnstr.c',
   'ft_tolower.c',
+  'ft_memchr.c',
+  'ft_bzero.c',
+  'ft_strdup.c',
+  'ft_calloc.c',
   'Makefile',
 ];
 
@@ -65,7 +69,11 @@ const testFunctionsFiles = [
   'test_ft_memset.c',
   'test_ft_memcmp.c',
   'test_ft_memcpy.c',
-  'test_ft_memmove.c'
+  'test_ft_memmove.c',
+  'test_ft_memchr.c',
+  'test_ft_bzero.c',
+  'test_ft_strdup.c',
+  'test_ft_calloc.c'
 ]
 
 //update File to check
