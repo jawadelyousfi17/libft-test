@@ -13,31 +13,31 @@ To use the tools in this repository, you need to have Node.js installed on your 
 1. **Update your package list**:
    ```sh
    sudo apt update
-```
+``
 2. **Install Node.js**:
    ```sh
    sudo apt install nodejs npm
-```
+``
 3. **Verify the installation**:
    ```sh
    node -v
    npm -v
-```
+``
 #### For macOS 🍏
 
 1. **Install Homebrew** (if not already installed):
    ```sh
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install```sh)"
-```
+``
 2. **Install Node.js**:
    ```sh
    brew install node
-```
+``
 3. **Verify the installation**:
    ```sh
    node -v
    npm -v
-   ```
+   ``
 #### For Windows 🪟
 
 1. **Install WSL (Windows Subsystem for Linux)**:
