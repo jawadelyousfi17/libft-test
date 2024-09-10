@@ -17,7 +17,14 @@ void test_ft_isalpha()
     int c = -1;
     while (c <= 255)
     {
-        assert(ft_isalpha(c) == isalpha(c));
+        if (isalpha(c))
+        {
+            assert(ft_isalpha(c));
+        }
+        else
+        {
+            assert(!ft_isalpha(c));
+        }
         c++;
     }
     printf("\033[1;32m"

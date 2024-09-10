@@ -16,9 +16,14 @@ void test_ft_isascii()
 
     int c = -1000;
     while (c <= 1000)
-    {
-        // printf("C = %d Passed\n",c-1);
-        assert(ft_isascii(c) == isascii(c));
+    {  if (isascii(c))
+        {
+            assert(ft_isascii(c));
+        }
+        else
+        {
+            assert(!ft_isascii(c));
+        }
         c++;
     }
     printf("\033[1;32m"

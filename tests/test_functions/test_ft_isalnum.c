@@ -16,7 +16,14 @@ void test_ft_isalnum()
     int c = -1;
     while (c <= 255)
     {
-        assert(ft_isalnum(c) == isalnum(c));
+          if (isalnum(c))
+        {
+            assert(ft_isalnum(c));
+        }
+        else
+        {
+            assert(!ft_isalnum(c));
+        }
         c++;
     }
     printf("\033[1;32m"

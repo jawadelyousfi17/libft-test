@@ -17,7 +17,14 @@ void test_ft_isdigit()
     int c = -1;
     while (c <= 255)
     {
-        assert(ft_isdigit(c) == isdigit(c));
+        if (isdigit(c))
+        {
+            assert(ft_isdigit(c));
+        }
+        else
+        {
+            assert(!ft_isdigit(c));
+        }
         c++;
     }
     printf("\033[1;32m"

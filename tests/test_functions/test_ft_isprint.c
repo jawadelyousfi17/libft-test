@@ -16,8 +16,14 @@ void test_ft_isprint()
     int c = -1;
     while (c <= 255)
     {
-        // printf("C = %d Passed\n",c-1);
-        assert(ft_isprint(c) == isprint(c));
+        if (isprint(c))
+        {
+            assert(ft_isprint(c));
+        }
+        else
+        {
+            assert(!ft_isprint(c));
+        }
         c++;
     }
     printf("\033[1;32m"
