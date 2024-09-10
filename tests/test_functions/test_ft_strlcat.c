@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
-#include "../../libft.h"
+#include "../libft.h"
 // #include <bsd/string.h>
 
 size_t strlcat(char *dst, const char *src, size_t dstsize);

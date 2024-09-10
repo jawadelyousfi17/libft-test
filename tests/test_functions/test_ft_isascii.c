@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <assert.h>
-#include "../../libft.h"
+#include "../libft.h"
 
 void test_ft_isascii()
 {
