@@ -13,8 +13,8 @@ console.log(args[0]);
 
 
 
-let src_folder = args[0] ? args[0] : '/';
-src_folder = ensureTrailingSlash(src_folder);
+let src_folder = args[0] ? args[0] : '';
+src_folder = !src_folder? src_folder : ensureTrailingSlash(src_folder);
 // Define the path to the src directory
 const srcPath = path.join(__dirname, src_folder);
 // Check if the directory exists
@@ -207,7 +207,7 @@ async function start(choice, makeFileChoice) {
         process.exit(0);
       }
       console.log(blue, bold, "\r⚙️  Compiling...");
-      exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + src_folder + 'libft.a ' + fsanitize_flag, (error, stdout, stderr) => {
+      exec('gcc -Wall -Wextra -Werror tests/main.c ' + allTestsFunctionsCommand + src_folder + 'libft.a  tests/libs/libmysd.a ' + fsanitize_flag, (error, stdout, stderr) => {
         // if (error) {
         //   console.error(bold, `\rError: \n${error.message}`);
         //   return;
