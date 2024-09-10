@@ -8,10 +8,6 @@ const os = require('os');
 
 const args = process.argv.slice(2); // Extract arguments
 
-console.log(args[0]);
-
-
-
 
 let src_folder = args[0] ? args[0] : '';
 src_folder = !src_folder? src_folder : ensureTrailingSlash(src_folder);
@@ -76,7 +72,6 @@ const testFunctionsFiles = [
 filesToCheck.forEach((fileName, index) => {
   filesToCheck[index] = src_folder + fileName;
 })
-console.log(filesToCheck)
 
 const pathToTestsFunction = 'tests/test_functions/'
 let allTestsFunctionsCommand = '';
