@@ -11,33 +11,34 @@ To use the tools in this repository, you need to have Node.js installed on your 
 #### For Linux 🐧
 
 1. **Update your package list**:
-   ```sh
-   sudo apt update
-```
-2. **Install Node.js**:
-   ```sh
-   sudo apt install nodejs npm
-```
-3. **Verify the installation**:
-   ```sh
+   ```bash
+    sudo apt update
+   
+
+3. **Install Node.js**:
+   ```bash
+    sudo apt install nodejs npm
+
+4. **Verify the installation**:
+   ```bash
    node -v
    npm -v
-```
+
 #### For macOS 🍏
 
 1. **Install Homebrew** (if not already installed):
-   ```sh
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install```sh)"
-```
+   ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 2. **Install Node.js**:
-   ```sh
-   brew install node
-```
+   ```bash
+    brew install node
+
 3. **Verify the installation**:
-   ```sh
-   node -v
-   npm -v
-   ```
+   ```bash
+    node -v
+    npm -v
+
 #### For Windows 🪟
 
 1. **Install WSL (Windows Subsystem for Linux)**:
@@ -48,21 +49,21 @@ To use the tools in this repository, you need to have Node.js installed on your 
 ## Getting Started
 
 1. **Clone the repository**:
-   ```sh
-   git clone https://github.com/jawadelyousfi17/libft-test.git
-   ```
+   ```bash
+    git clone https://github.com/jawadelyousfi17/libft-test.git
+
 2. **Navigate to the project directory**:
-   ```sh
-   cd libft-test
+   ```bash
+    cd libft-test
 
 3. **Install dependencies**:
-   ```sh
-   npm install
-```
+   ```bash
+    npm install
+
 4. **Run tests**:
-   ```sh
-   npm run test
-```
+   ```bash
+    npm run test
+
 ## Notes
 
 - If you encounter issues with missing dependencies, ensure that all required libraries are installed.
