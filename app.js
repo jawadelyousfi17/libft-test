@@ -1,3 +1,4 @@
+
 const readline = require('readline');
 const { exec } = require('child_process');
 const fs = require('fs');
@@ -6,21 +7,95 @@ const { isLibbsdInstalled, printInstallationInstructions, ensureTrailingSlash } 
 const os = require('os');
 
 
+
 const args = process.argv.slice(2); // Extract arguments
 
+const reset = '\x1b[0m';
+const bold = '\x1b[1m';
+const blue = '\x1b[34m';
+const yellow = '\x1b[33m';
+const green = '\x1b[32m';
+const red = '\x1b[31m'; // Red color
+const cyan = '\x1b[36m';
 
 let src_folder = args[0] ? args[0] : '';
 src_folder = !src_folder? src_folder : ensureTrailingSlash(src_folder);
 // Define the path to the src directory
 const srcPath = path.join(__dirname, src_folder);
 // Check if the directory exists
-if (!fs.existsSync(srcPath)) {
-  console.error(`Directory ${src_folder} does not exist.`);
-  process.exit(1);
-}
+
 const make_command = src_folder ? 'make -C ' + src_folder : 'make'
 const make_clean_command = src_folder ? 'make clean -C ' + src_folder : 'make clean'
 
+console.log(blue, '\r', `
+  
+  ░▒▓█▓▒░▒▓███████▓▒░▒▓███████▓▒░░▒▓████████▓▒░ 
+░▒▓████▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+  ░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░ 
+  ░▒▓█▓▒░▒▓███████▓▒░▒▓███████▓▒░      ░▒▓█▓▒░  
+  ░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░  
+  ░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░    ░▒▓█▓▒░   
+  ░▒▓█▓▒░▒▓███████▓▒░▒▓███████▓▒░     ░▒▓█▓▒░   
+                                                
+                                               
+ `,
+ yellow,
+ "\r\nTest",
+ "\nby: @jel-yous\n",
+ "GitHub: https://github.com/jawadelyousfi17/libft\n",
+ "If you encounter any issues or bugs,\n",
+ "please report them on the GitHub page.\n");
+
+
+ function log_dir()
+ {
+  console.log(`${reset}
+    │
+    ├── app.js
+    ├── check_libsd.js
+    ├── LICENSE
+    ├── package.json
+    ├── README.md
+    ├── run.js
+    ├── tests/
+    │   └── ... (other test files)
+    │ ${reset}
+    ├── your-folder-name ${red}(${src_folder})${cyan} ↩ Add your folder here in the root directory ${reset}
+    │   ├── ft_strlen.c
+    │   ├── ... (all ft_functions)
+    │   ├── Makefile
+    │   └── libft.h
+    │${reset}
+    └── ... (other files)
+       `)
+ }
+
+ function log_libft()
+ {
+  console.log(`${reset}
+    │
+    ├── app.js
+    ├── check_libsd.js
+    ├── LICENSE
+    ├── package.json
+    ├── README.md
+    ├── run.js
+    ├── tests/
+    │   └── ... (other test files)
+    │ ${cyan}
+    ├── your-folder-name (${src_folder})  
+    │   ├──${red} libfta.a ${cyan}     ↩ Add your libft.a here
+    │   └── libft.h 
+    │${reset}
+    └── ... (other files)
+       `)
+ }
+
+   if (!fs.existsSync(srcPath)) {
+    console.error(`Directory ${src_folder} does not exist.`);
+    log_dir();
+    process.exit(1);
+  }
 // Array of file paths to check
 const filesToCheck = [
   'ft_isalnum.c',
@@ -87,12 +162,6 @@ testFunctionsFiles.forEach(testFunction => {
   allTestsFunctionsCommand += `${pathToTestsFunction}${testFunction} `
 })
 
-const reset = '\x1b[0m';
-const bold = '\x1b[1m';
-const blue = '\x1b[34m';
-const yellow = '\x1b[33m';
-const green = '\x1b[32m';
-const red = '\x1b[31m'; // Red color
 
 const status = [
   { text: '🔍 Checking files...', color: blue },
@@ -137,6 +206,7 @@ async function start(choice, makeFileChoice) {
     console.log(blue, bold, "\r🔍  Checking files ...")
     checkFilesExist(filesToCheck).then((err) => {
       if (err) {
+        log_dir();
         console.log(red, bold, '\rERROR! some files are missing');
         console.log(red, bold, '\rStopping the application...');
         process.exit(0); // 0 indicates success
@@ -172,12 +242,13 @@ async function start(choice, makeFileChoice) {
             console.log(`${stdout}`);
           console.log(green, "\r✅ Compiled!");
           console.log(blue, "\r⚙️  Running...");
-          exec('./a.out -f', (error, stdout, stderr) => {
-            // if (error) {
-            //   console.error(`Error: ${error.message}`);
-            //   return;
-            // }
+          exec('./a.out -f', { timeout: 2500 }, (error, stdout, stderr) => {
+            if (error && error.signal === 'SIGTERM') {
+              console.log(red, "\r🕒  Time out... The command took too long to execute.");
+              return;
+            }
             if (stderr) {
+              console.log("");
               if (stderr.includes("Assertion")) {
                 const functionNameRegex = /ft_(\w+)/;
 
@@ -206,7 +277,8 @@ async function start(choice, makeFileChoice) {
     checkFileExists(src_folder+'libft.a').then((f_exist) => {
       if (!f_exist) {
         console.log("❌ libfta.a not found in : ",src_folder+'libft.a');
-        console.log(reset,"Make sure you have libft.a");
+        console.log("Make sure you have libft.a");
+        log_libft();
         process.exit(0);
       }
       console.log(blue, bold, "\r⚙️  Compiling...");
@@ -237,10 +309,13 @@ async function start(choice, makeFileChoice) {
         if (stdout)
           console.log(`${stdout}`);
         console.log(green, "\r✅ Compiled!");
-        console.log(blue, "\r⚙️  Running...");
-        exec('./a.out -f', (error, stdout, stderr) => {
+        console.log(green, "\r⚙️  --Running...");
+        exec('./a.out -f', { timeout: 1500 }, (error, stdout, stderr) => {
           if (error) {
-            console.error(`Error: ${error.message}`);
+            if (error.code === 'ETIMEDOUT') {
+              console.error('The command timed out.');
+            } else 
+              console.error(`Error: ${error.message}`);
             return;
           }
           if (stderr) {
@@ -265,20 +340,7 @@ const rl = readline.createInterface({
   terminal: false  // This prevents double input echoing
 });
 
-console.log(blue, '\r', `
-  ██╗     ██╗██████╗ ███████╗████████╗
-  ██║     ██║██╔══██╗██╔════╝╚══██╔══╝
-  ██║     ██║██████╔╝█████╗     ██║   
-  ██║     ██║██╔══██╗██╔══╝     ██║   
-  ███████╗██║██████╔╝██║        ██║   
-  ╚══════╝╚═╝╚═════╝ ╚═╝        ╚═╝   
-  `,
-  yellow,
-  "\r\nTest",
-  "\nby: @jel-yous\n",
-  "GitHub: https://github.com/jawadelyousfi17/libft\n",
-  "If you encounter any issues or bugs,\n",
-  "please report them on the GitHub page.\n");
+
 
 if (os.platform == 'win32') {
   console.log("❌ Sorry, this can't be run on Windows.\nPlease use a 🐧 Unix-based system like Linux or macOS.");

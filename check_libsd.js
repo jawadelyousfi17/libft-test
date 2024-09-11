@@ -70,6 +70,51 @@ function ensureTrailingSlash(str) {
   // Append a '/' to the end of the string
   return str + '/';
 }
+function buildTree(paths) {
+  // Helper function to build the tree
+  const tree = {};
+
+  paths.forEach((path) => {
+      const parts = path.split('/');
+      let current = tree;
+
+      parts.forEach((part, index) => {
+          if (!current[part]) {
+              current[part] = {};  // Create a new object for each part of the path
+          }
+          current = current[part]; // Move to the next level in the tree
+      });
+  });
+
+  return tree;
+}
+
+// Helper function to print the tree in a tree-like format
+function printTree(tree, indent = '') {
+  Object.keys(tree).forEach((key, index, array) => {
+      const isLast = index === array.length - 1;
+      console.log(`${indent}${isLast ? '└──' : '├──'} ${key}`);
+      printTree(tree[key], indent + (isLast ? '    ' : '│   '));
+  });
+}
+
+// Example usage
+const paths = [
+  "app.js",
+  "check_libsd.js",
+  "LICENSE",
+  "package.json",
+  "README.md",
+  "run.js",
+  "tests/test_file1.c",
+  "tests/test_file2.c",
+  "your-folder-name/ft_strlen.c",
+  "your-folder-name/ft_strlcpy.c"
+];
+
+
+
+
 
 module.exports = {
     isLibbsdInstalled,
