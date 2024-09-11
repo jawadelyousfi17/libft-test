@@ -4,6 +4,7 @@
     "ora": "^8.1.0"
   },
   "scripts": {
-    "test": "node app.js"
+    "test": "node app.js",
+    "testf" : "node test_by_function.js"
   }
 }
