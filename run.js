@@ -36,7 +36,7 @@ else {
 }
 
 async function begin() {
-    draw_intro(reset);
+    draw_intro(yellow);
     const functionNames = [
         "ft_isalpha",
         "ft_isdigit",
