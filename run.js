@@ -142,10 +142,12 @@ async function begin() {
 
     //check args
     if (!args.f) {
-        console.log(`❌ Error: Invalid args!${reset}
+        console.log(yellow,`\r❌ Error: Invalid args!${reset}
     Try this  intsted
     Valid : testf -f ft_strlen  [ or any function name ]
     valid : testf -f all
+    valid : testf -u  
+    valid : testf -update
         `);
         process.exit(1);
     }
