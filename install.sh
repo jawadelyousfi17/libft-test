@@ -8,7 +8,7 @@ CYAN='\033[0;36m'
 RESET='\033[0m' # No Color
 
 SCRIPT_NAME="run_test.sh"
-TARGET_DIR="/root/libcc"
+TARGET_DIR="/opt/libcc"
 
 # Make sure the script is executable
 #echo -e "${CYAN}Making the script executable...${RESET}"
@@ -28,11 +28,11 @@ fi
 
 # Create a symbolic link in /usr/bin
 #echo -e "${CYAN}Creating a symbolic link in /usr/bin...${RESET}"
-sudo ln -s "$TARGET_DIR/$SCRIPT_NAME" /usr/bin/libtf
+sudo ln -s "$TARGET_DIR/$SCRIPT_NAME" /usr/bin/libtt
 if [ $? -ne 0 ]; then
     echo -e "❌ ${RED}Failed to create a symbolic link.${RESET}" >&2
     exit 1
 fi
 
 # Output messages with colors and styles
-echo -e "✅ ${GREEN}The script is installed and can be run using: ${GREEN}libtf${RESET}"
+echo -e "✅ ${GREEN}The script is installed and can be run using: ${GREEN}libtt${RESET}"
