@@ -28,11 +28,11 @@ fi
 
 # Create a symbolic link in /usr/bin
 #echo -e "${CYAN}Creating a symbolic link in /usr/bin...${RESET}"
-sudo ln -s "$TARGET_DIR/$SCRIPT_NAME" /usr/bin/libk
+sudo ln -s "$TARGET_DIR/$SCRIPT_NAME" /usr/bin/testlibft
 if [ $? -ne 0 ]; then
     echo -e "❌ ${RED}Failed to create a symbolic link.${RESET}" >&2
     exit 1
 fi
 
 # Output messages with colors and styles
-echo -e "✅ ${GREEN}The script is installed and can be run using: ${GREEN}libk${RESET}"
+echo -e "✅ ${GREEN}The script is installed and can be run using: ${GREEN}testlibft${RESET}"

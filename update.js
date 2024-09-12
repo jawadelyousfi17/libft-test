@@ -8,12 +8,9 @@ const { getParams } = require("./get_args")
 const os = require('os');
 
 //working directory
-const currentDirectory = process.cwd();
-
-const dirName = __dirname
 
 
-let failed = false;
+
 const args = getParams();
 const reset = '\x1b[0m';
 const bold = '\x1b[1m';
