@@ -1,6 +1,8 @@
 #ifndef TEST_H
 #define TEST_H
 
+
+
 void test_ft_isalpha();
 void test_ft_isdigit();
 void test_ft_isalnum();
@@ -24,7 +26,13 @@ void test_ft_memchr();
 void test_ft_bzero();
 void test_ft_strdup();
 void test_ft_calloc();
-
+void test_ft_substr();
+void test_ft_strjoin();
+void test_ft_strtrim();
+void test_ft_split();
+void test_ft_itoa();
+void test_ft_strmapi();
+void test_ft_striteri();
 int is_bzero(void *ptr, size_t n);
 int is_not_bzero(void *ptr, size_t start, size_t n);
 

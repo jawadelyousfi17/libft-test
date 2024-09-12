@@ -9,56 +9,54 @@
 
 
 void run_test(char *str) {
-    if (strcmp(str, "ft_strlen") == 0) {
-        test_ft_strlen();
-    } else if (strcmp(str, "ft_isalnum") == 0) {
-        test_ft_isalnum();
-    } else if (strcmp(str, "ft_isalpha") == 0) {
-        test_ft_isalpha();
-    } else if (strcmp(str, "ft_isascii") == 0) {
-        test_ft_isascii();
-    } else if (strcmp(str, "ft_isdigit") == 0) {
-        test_ft_isdigit();
-    } else if (strcmp(str, "ft_isprint") == 0) {
-        test_ft_isprint();
-    } else if (strcmp(str, "ft_strncmp") == 0) {
-        test_ft_strncmp();
-    } else if (strcmp(str, "ft_strnstr") == 0) {
-        test_ft_strnstr();
-    } else if (strcmp(str, "ft_strrchr") == 0) {
-        test_ft_strrchr();
-    } else if (strcmp(str, "ft_tolower") == 0) {
-        test_ft_tolower();
-    } else if (strcmp(str, "ft_toupper") == 0) {
-        test_ft_toupper();
-    } else if (strcmp(str, "ft_strchr") == 0) {
-        test_ft_strchr();
-    } else if (strcmp(str, "ft_strlcat") == 0) {
-        test_ft_strlcat();
-    } else if (strcmp(str, "ft_strlcpy") == 0) {
-        test_ft_strlcpy();
-    } else if (strcmp(str, "ft_atoi") == 0) {
-        test_ft_atoi();
-    } else if (strcmp(str, "ft_memcmp") == 0) {
-        test_ft_memcmp();
-    } else if (strcmp(str, "ft_memcpy") == 0) {
-        test_ft_memcpy();
-    } else if (strcmp(str, "ft_memset") == 0) {
-        test_ft_memset();
-    } else if (strcmp(str, "ft_memmove") == 0) {
-        test_ft_memmove();
-    } else if (strcmp(str, "ft_calloc") == 0) {
-        test_ft_calloc();
-    } else if (strcmp(str, "ft_strdup") == 0) {
-        test_ft_strdup();
-    } else if (strcmp(str, "ft_memchr") == 0) {
-        test_ft_memchr();
-    } else if (strcmp(str, "ft_bzero") == 0) {
-        test_ft_bzero();
-    } else {
-        printf("Invalid test name: %s\n", str);
+    struct {
+        char *name;
+        void (*test_func)(void);
+    } tests[] = {
+        {"ft_strlen", test_ft_strlen},
+        {"ft_isalnum", test_ft_isalnum},
+        {"ft_isalpha", test_ft_isalpha},
+        {"ft_isascii", test_ft_isascii},
+        {"ft_isdigit", test_ft_isdigit},
+        {"ft_isprint", test_ft_isprint},
+        {"ft_strncmp", test_ft_strncmp},
+        {"ft_strnstr", test_ft_strnstr},
+        {"ft_strrchr", test_ft_strrchr},
+        {"ft_tolower", test_ft_tolower},
+        {"ft_toupper", test_ft_toupper},
+        {"ft_strchr", test_ft_strchr},
+        {"ft_strlcat", test_ft_strlcat},
+        {"ft_strlcpy", test_ft_strlcpy},
+        {"ft_atoi", test_ft_atoi},
+        {"ft_memcmp", test_ft_memcmp},
+        {"ft_memcpy", test_ft_memcpy},
+        {"ft_memset", test_ft_memset},
+        {"ft_memmove", test_ft_memmove},
+        {"ft_calloc", test_ft_calloc},
+        {"ft_strdup", test_ft_strdup},
+        {"ft_memchr", test_ft_memchr},
+        {"ft_bzero", test_ft_bzero},
+        {"ft_itoa", test_ft_itoa},
+        {"ft_split", test_ft_split},
+        {"ft_striteri", test_ft_striteri},
+        {"ft_strjoin", test_ft_strjoin},
+        {"ft_strmapi", test_ft_strmapi},
+        {"ft_strtrim", test_ft_strtrim},
+        {"ft_substr", test_ft_substr},
+        {NULL, NULL} // Sentinel value
+    };
+
+    for (int i = 0; tests[i].name != NULL; i++) {
+        if (strcmp(str, tests[i].name) == 0) {
+            tests[i].test_func();
+            return;
+        }
     }
+
+    printf("Invalid test name: %s\n", str);
 }
+
+
 int main(int ac, char *av[])
 {
     (void) ac;

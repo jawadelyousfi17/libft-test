@@ -24,31 +24,38 @@ const red = '\x1b[31m'; // Red color
 const cyan = '\x1b[36m';
 
 const functionNames = [
-    'ft_strlen',
-    'ft_isalnum',
-    'ft_isalpha',
-    'ft_isascii',
-    'ft_isdigit',
-    'ft_isprint',
-    'ft_strncmp',
-    'ft_strnstr',
-    'ft_strrchr',
-    'ft_tolower',
-    'ft_toupper',
-    'ft_strchr',
-    'ft_strlcat',
-    'ft_strlcpy',
-    'ft_atoi',
-    'ft_memcmp',
-    'ft_memcpy',
-    'ft_memset',
-    'ft_memmove',
-    'ft_calloc',
-    'ft_strdup',
-    'ft_memchr',
-    'ft_bzero'
+    "ft_isalpha",
+    "ft_isdigit",
+    "ft_isalnum",
+    "ft_isascii",
+    "ft_isprint",
+    "ft_strlen",
+    "ft_memset",
+    "ft_bzero",
+    "ft_memcpy",
+    "ft_memmove",
+    "ft_strlcpy",
+    "ft_strlcat",
+    "ft_toupper",
+    "ft_tolower",
+    "ft_strchr",
+    "ft_strrchr",
+    "ft_strncmp",
+    "ft_memchr",
+    "ft_memcmp",
+    "ft_strnstr",
+    "ft_atoi",
+    "ft_calloc",
+    "ft_strdup",
+    'ft_substr',
+    'ft_itoa',
+    'ft_split',
+    'ft_striteri',
+    'ft_strmapi',
+    'ft_strtrim'
 ];
 
+console.log(functionNames.length)
 
 
 console.log(blue, '\r', `1337`);
