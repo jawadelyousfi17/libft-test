@@ -24,7 +24,7 @@ const cyan = '\x1b[36m';
   async function update_git(callback)
   {
     process.chdir(__dirname);
-      exec('git pull', (error, stdout, stderr) => {
+      exec('sudo git pull', (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error  ${error.message}`);
                 return;
