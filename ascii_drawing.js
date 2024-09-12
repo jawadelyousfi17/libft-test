@@ -16,7 +16,7 @@ function draw_done(color) {
 
 function draw_intro(color)
 {
-    console.log(colr,`
+    console.log(color,`
  ██╗██████╗ ██████╗ ███████╗
 ███║╚════██╗╚════██╗╚════██║
 ╚██║ █████╔╝ █████╔╝    ██╔╝
