@@ -36,7 +36,7 @@ const cyan = '\x1b[36m';
                 console.error(` ERROR: ${stderr}`);
                 return;
             }
-            console.log(`${stdout}`);
+            console.log(` Updated ${stdout}`);
             callback(0);
             process.exit(1);
         });
