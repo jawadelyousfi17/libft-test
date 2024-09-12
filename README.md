@@ -57,11 +57,12 @@ To use the tools in this repository, you need to have Node.js installed on your 
     cd libft-test
 
 
-3. **Install **:
+3. **Install**:
    ```bash
     ./install.sh
 4. **Run tests**:
    *** Test all functions ***
+   
    Make sure you are in your libft.a directory then run :
    ```bash
    testlibft -f all
