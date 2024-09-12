@@ -65,7 +65,7 @@ To use the tools in this repository, you need to have Node.js installed on your 
    
    Make sure you are in your libft.a directory then run :
    ```bash
-   testlibft -f all
+   testlibfta -f all
    
 
 remplace [directory] with th name of you folder e.g. : $npm run test src
