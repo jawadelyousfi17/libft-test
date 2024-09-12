@@ -167,7 +167,7 @@ checkFilesExist([libftPath]).then(err => {
         console.error(`❌ No test available for  ${args.f} . make sure its correct`);
         process.exit(0);
     }
-	const command = `gcc ${dirName}/tests/test_by_function.c ${__dirname}/tests/test_functions/libtest.a ${__dirname}/tests/libs/libmysd.a ` + libftPath +`  -fsanitize=address -o ${src_folder}/testLaunch.out  `
+	const command = `gcc ${dirName}/tests/test_by_function.c ${__dirname}/tests/test_functions/libtest.a ${__dirname}/tests/libs/libmysd.a ` + libftPath +`  -fsanitize=address -o ${src_folder}testLaunch.out  `
    // const command = 'gcc ${dirName}/tests/test_by_function.c ${__dirname}/tests/test_functions/libtest.a ${__dirname}/tests/libs/libmysd.a ' + libftPath + ' -fsanitize=address -o ${__dirname}/testLaunch.out';
     start(command);
 })
