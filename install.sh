@@ -8,7 +8,7 @@ CYAN='\033[0;36m'
 RESET='\033[0m' # No Color
 
 SCRIPT_NAME="run_test.sh"
-TARGET_DIR="/opt/libcc"
+TARGET_DIR="/opt/last"
 
 # Make sure the script is executable
 #echo -e "${CYAN}Making the script executable...${RESET}"
