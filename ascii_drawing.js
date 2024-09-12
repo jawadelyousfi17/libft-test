@@ -14,5 +14,17 @@ function draw_done(color) {
         `, reset)
 }
 
+function draw_intro(color)
+{
+    console.log(colr,`
+ ██╗██████╗ ██████╗ ███████╗
+███║╚════██╗╚════██╗╚════██║
+╚██║ █████╔╝ █████╔╝    ██╔╝
+ ██║ ╚═══██╗ ╚═══██╗   ██╔╝ 
+ ██║██████╔╝██████╔╝   ██║  
+ ╚═╝╚═════╝ ╚═════╝    ╚═╝  
+                            
+`,reset)
+}
 
-module.exports = { draw_done }
+module.exports = { draw_done , draw_intro }
