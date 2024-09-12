@@ -26,6 +26,7 @@ const cyan = '\x1b[36m';
 
   async function update_git(callback)
   {
+    console.log(currentDirectory);
       exec('git pull', (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error  ${error.message}`);
