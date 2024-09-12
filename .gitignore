@@ -12,7 +12,7 @@
 *.ko
 *.obj
 *.elf
-
+libft.a
 # Linker output
 *.ilk
 *.map
