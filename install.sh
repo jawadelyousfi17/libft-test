@@ -8,7 +8,7 @@ CYAN='\033[0;36m'
 RESET='\033[0m' # No Color
 
 SCRIPT_NAME="run_test.sh"
-TARGET_DIR="/opt/last"
+TARGET_DIR="/root/last"
 
 # Make sure the script is executable
 #echo -e "${CYAN}Making the script executable...${RESET}"
@@ -28,11 +28,11 @@ fi
 
 # Create a symbolic link in /usr/bin
 #echo -e "${CYAN}Creating a symbolic link in /usr/bin...${RESET}"
-sudo ln -s "$TARGET_DIR/$SCRIPT_NAME" /usr/bin/libe
+sudo ln -s "$TARGET_DIR/$SCRIPT_NAME" /usr/bin/libk
 if [ $? -ne 0 ]; then
     echo -e "❌ ${RED}Failed to create a symbolic link.${RESET}" >&2
     exit 1
 fi
 
 # Output messages with colors and styles
-echo -e "✅ ${GREEN}The script is installed and can be run using: ${GREEN}libe${RESET}"
+echo -e "✅ ${GREEN}The script is installed and can be run using: ${GREEN}libk${RESET}"
