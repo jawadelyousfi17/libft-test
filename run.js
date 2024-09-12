@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { isLibbsdInstalled, printInstallationInstructions, ensureTrailingSlash } = require('./check_libsd');
 const { getParams } = require("./get_args")
+const {update_git} = require("./update")
 const os = require('os');
 
 //working directory
@@ -23,6 +24,18 @@ const green = '\x1b[32m';
 const red = '\x1b[31m'; // Red color
 const cyan = '\x1b[36m';
 
+
+
+if (args.update)
+{
+    console.log(blue, "\rUpdating...")
+    update_git((err) => process.exit(err));
+}
+else {
+    begin();
+}
+
+async function begin(){
 const functionNames = [
     "ft_isalpha",
     "ft_isdigit",
@@ -55,8 +68,6 @@ const functionNames = [
     'ft_strtrim'
 ];
 
-
-console.log(blue, '\r', `1337`);
 
 
 console.log(blue, '\r', `
@@ -172,8 +183,8 @@ checkFilesExist([libftPath]).then(err => {
         console.error(`❌ No test available for  ${args.f} . make sure its correct`);
         process.exit(0);
     }
-	const command = `gcc ${dirName}/tests/test_by_function.c ${__dirname}/tests/test_functions/libtest.a ${__dirname}/tests/libs/libmysd.a ` + libftPath +`  -fsanitize=address -o ${src_folder}testLaunch.out  `
-   // const command = 'gcc ${dirName}/tests/test_by_function.c ${__dirname}/tests/test_functions/libtest.a ${__dirname}/tests/libs/libmysd.a ' + libftPath + ' -fsanitize=address -o ${__dirname}/testLaunch.out';
+    const command = `gcc ${dirName}/tests/test_by_function.c ${__dirname}/tests/test_functions/libtest.a ${__dirname}/tests/libs/libmysd.a ` + libftPath + `  -fsanitize=address -o ${src_folder}testLaunch.out  `
+    // const command = 'gcc ${dirName}/tests/test_by_function.c ${__dirname}/tests/test_functions/libtest.a ${__dirname}/tests/libs/libmysd.a ' + libftPath + ' -fsanitize=address -o ${__dirname}/testLaunch.out';
     start(command);
 })
 
@@ -259,11 +270,11 @@ async function runTests(fname) {
         }
     }
     console.log("   === RESULT ===");
-    if (failed)
-    {
+    if (failed) {
         console.log("⚠️ LIBFT Test failed");
     } else {
-        console.log(yellow,"✅ LIBFT ALL TESTS PASSED!");
+        console.log(yellow, "✅ LIBFT ALL TESTS PASSED!");
     }
 }
 
+}

@@ -1,10 +1,16 @@
-const args = process.argv.slice(2); 
+const args = process.argv.slice(2);
 
 const parseArgs = (args) => {
   const flags = {};
   for (let i = 0; i < args.length; i += 2) {
     if (args[i].startsWith('-')) {
-      flags[args[i].substring(1)] = args[i + 1]; 
+      if (args[i].substring(1) == 'update' || args[i].substring(1) == 'u') {
+        flags['update'] = 'yes';
+        i--;
+      }
+      else {
+        flags[args[i].substring(1)] = args[i + 1];
+      }
     }
   }
   return flags;
