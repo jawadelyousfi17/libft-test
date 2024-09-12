@@ -6,6 +6,7 @@ const path = require('path');
 const { isLibbsdInstalled, printInstallationInstructions, ensureTrailingSlash } = require('./check_libsd');
 const { getParams } = require("./get_args")
 const {update_git} = require("./update")
+const {draw_done} = require('./ascii_drawing')
 const os = require('os');
 
 //working directory
@@ -273,6 +274,7 @@ async function runTests(fname) {
     if (failed) {
         console.log("⚠️ LIBFT Test failed");
     } else {
+        draw_done(green);
         console.log(yellow, "✅ LIBFT ALL TESTS PASSED!");
     }
 }
