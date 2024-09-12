@@ -56,13 +56,17 @@ To use the tools in this repository, you need to have Node.js installed on your 
    ```bash
     cd libft-test
 
-3. **Install dependencies**:
-   ```bash
-    npm install
 
-4. **Run tests**:
+3. **Install **:
    ```bash
-    npm run test [directory]
+    ./install.sh
+4. **Run tests**:
+   *** Test all functions ***
+   Make sure you are in your libft.a directory then run :
+   ```bash
+   testlibft -f all
+   
+
 remplace [directory] with th name of you folder e.g. : $npm run test src
 
 Make sur to copy all your source files in the current directory and run.
