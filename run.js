@@ -115,7 +115,7 @@ async function begin() {
    │ ${cyan}
    └── (${fld})  
          ├──>${red} libfta.a ${cyan}     ↩ Add your libft.a here
-         └──> ... 
+         └──> ..
    
 
       `)
