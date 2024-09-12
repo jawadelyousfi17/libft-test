@@ -55,8 +55,6 @@ const functionNames = [
     'ft_strtrim'
 ];
 
-console.log(functionNames.length)
-
 
 console.log(blue, '\r', `1337`);
 
@@ -265,7 +263,7 @@ async function runTests(fname) {
     {
         console.log("⚠️ LIBFT Test failed");
     } else {
-        console.log("✅ LIBFT ALL TESTS PASSED!");
+        console.log(yellow,"✅ LIBFT ALL TESTS PASSED!");
     }
 }
 
