@@ -7,6 +7,10 @@ const { isLibbsdInstalled, printInstallationInstructions, ensureTrailingSlash } 
 const { getParams } = require("./get_args")
 const os = require('os');
 
+//working directory
+const currentDirectory = process.cwd();
+const opt_dir = __dirname
+
 
 let failed = false;
 const args = getParams();
@@ -103,19 +107,11 @@ async function checkFilesExist(files) {
 
 function log_libft(fld) {
     console.log(`${reset}
-   │
-   ├── app.js
-   ├── check_libsd.js
-   ├── LICENSE
-   ├── package.json
-   ├── README.md
-   ├── run.js
-   ├── tests/
-   │   └── ... (other test files)
+
    │ ${cyan}
-   └── your-folder-name (${fld})  
-         ├──${red} libfta.a ${cyan}     ↩ Add your libft.a here
-         └── libft.h 
+   └── (${fld})  
+         ├──>${red} libfta.a ${cyan}     ↩ Add your libft.a here
+         └──> ... 
    
 
       `)
@@ -141,25 +137,25 @@ function log_dir() {
 
 
 //check args
-if (!args.f || !args.src) {
-    console.log(`❌ Error: Invalid args: 
-        Valid : npm run testf -- -f ft_strlen -src your_directory
-        -f + function_name -src + directory_name
+if (!args.f) {
+    console.log(`❌ Error: Invalid args!${reset}
+    Try this  intsted
+    Valid : testf -f ft_strlen  [ or any function name ]
+    valid : testf -f all
         `);
     process.exit(1);
 }
 //Check folder
-let src_folder = args.src;
-src_folder = ensureTrailingSlash(src_folder);
-const srcPath = path.join(__dirname, src_folder);
+let src_folder = currentDirectory
+src_folder = ensureTrailingSlash(src_folder)
+const srcPath = src_folder
 if (!fs.existsSync(srcPath)) {
     console.error(`❌ Directory ${src_folder} does not exist.`);
     log_dir();
     process.exit(1);
 }
 
-const libftPath = src_folder + 'libft.a';
-
+const libftPath = src_folder + 'libft.a'
 
 checkFilesExist([libftPath]).then(err => {
     if (err) {
@@ -170,7 +166,7 @@ checkFilesExist([libftPath]).then(err => {
         console.error(`❌ No test available for  ${args.f} . make sure its correct`);
         process.exit(0);
     }
-    const command = 'gcc tests/test_by_function.c tests/test_functions/libtest.a tests/libs/libmysd.a ' + libftPath + ' -fsanitize=address -o testLaunch.out';
+    const command = 'gcc tests/test_by_function.c tests/test_functions/libtest.a tests/libs/libmysd.a ' + libftPath + ' -fsanitize=address -o /opt/libft-test/testLaunch.out';
     start(command);
 })
 
@@ -242,7 +238,7 @@ async function launch(command, fname) {
 }
 
 async function runTests(fname) {
-    if (fname !== 'all') {
+    if (fname !== 'all' || !fname) {
         try {
             await launch(`./testLaunch.out ${fname}`, fname);
         } catch (error) {
