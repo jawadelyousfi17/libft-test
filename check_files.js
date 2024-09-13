@@ -3,7 +3,14 @@ const path = require('path');
 const { filesToCheck } = require("./data")
 const currentDirectory = process.cwd();
 
-console.log(currentDirectory);
+const reset = '\x1b[0m';
+const bold = '\x1b[1m';
+const blue = '\x1b[34m';
+const yellow = '\x1b[33m';
+const green = '\x1b[32m';
+const red = '\x1b[31m'; // Red color
+const cyan = '\x1b[36m';
+
 
 const filesToCheckFullPath = filesToCheck.map(fileName => currentDirectory + '/' + fileName);
 
@@ -23,7 +30,7 @@ async function checkFiles() {
         const absolutePath = path.resolve(file);
         const exists = await checkFileExists(absolutePath);
         if (!exists) {
-            console.log(`${filesToCheck[index]} ${exists ? 'exists' : 'is MISSING'}`);
+            console.log(yellow,`\t⚠️  ${filesToCheck[index]}     is MISSING`,reset);
             err = true;
         }
     }
