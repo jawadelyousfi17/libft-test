@@ -30,7 +30,7 @@ async function checkFiles() {
         const absolutePath = path.resolve(file);
         const exists = await checkFileExists(absolutePath);
         if (!exists) {
-            console.log(yellow,`\t⚠️  ${filesToCheck[index]}     is MISSING`,reset);
+            console.log(yellow,`\r⚠️  ${filesToCheck[index]}     is MISSING`,reset);
             err = true;
         }
     }
