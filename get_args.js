@@ -8,6 +8,10 @@ const parseArgs = (args) => {
         flags['update'] = 'yes';
         i--;
       }
+      else if (args[i].substring(1) == 'check' || args[i].substring(1) == 'c'){
+        flags['check'] = 'yes';
+        i--;
+      }
       else {
         flags[args[i].substring(1)] = args[i + 1];
       }

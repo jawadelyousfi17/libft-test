@@ -7,6 +7,7 @@ const { isLibbsdInstalled, printInstallationInstructions, ensureTrailingSlash } 
 const { getParams } = require("./get_args")
 const { update_git } = require("./update")
 const { draw_done, draw_intro } = require('./ascii_drawing')
+const {checkFiles} = require("./check_files")
 const os = require('os');
 
 //working directory
@@ -31,7 +32,15 @@ if (args.update) {
     console.log(blue, "\rUpdating...")
     update_git((err) => process.exit(err));
 }
-else {
+else if (args.check){
+    console.log(blue, "\rChecking files...");
+    checkFiles().then((err) => {
+        if(!err)
+        {
+            console.log(green,'\r✅ All files exist',reset)
+        }
+    })
+} else {
     begin();
 }
 
@@ -148,6 +157,8 @@ async function begin() {
     valid : testf -f all
     valid : testf -u  
     valid : testf -update
+    valid : testf -check
+    valid : testf -c
         `);
         process.exit(1);
     }
