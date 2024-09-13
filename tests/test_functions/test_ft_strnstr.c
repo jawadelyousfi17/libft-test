@@ -31,6 +31,7 @@ void test_ft_strnstr()
     assert(strnstr("abcdef", "a", 1) == ft_strnstr("abcdef", "a", 1));
     assert(strnstr("abcdef", "f", 6) == ft_strnstr("abcdef", "f", 6));
     assert(strnstr("abcdef", "", 6) == ft_strnstr("abcdef", "", 6));
+    assert(strnstr("", "Hel", 0) == ft_strnstr("", "Hel", 0));
     assert(strnstr("abcdef", "abcdef", 6) == ft_strnstr("abcdef", "abcdef", 6));
     assert(strnstr("abcdef", "abcdefg", 7) == ft_strnstr("abcdef", "abcdefg", 7));
     assert(strnstr("abcdef", "e", 4) == ft_strnstr("abcdef", "e", 4));
