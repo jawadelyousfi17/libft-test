@@ -211,9 +211,6 @@ async function begin() {
                     }
                     console.log("Error: Undefined references to the following functions:");
                     console.log(red, missingFnames, reset)
-                    console.log("Please include these functions in your C files.");
-                    console.log("Or use the '-l' flag to link the additional functions required.");
-                    console.log(`For example : ${cyan} libftu -f ${args.f[0]} ${yellow} -l ${missingFnames} ${reset}`);
     
                 } else
                     console.error(`Error executing command: ${error.message}`);
