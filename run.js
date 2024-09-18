@@ -190,7 +190,7 @@ async function begin() {
     async function start(command) {
         exec(command, (error, stdout, stderr) => {
             if (error) {
-                console.log("⚠️ Can't compile");
+                console.log(red,"\r⚠️ Can't compile");
                 if (error.message.includes("undefined reference to")) {
                     const regex = /undefined reference to [`'"]([^`'"]+)['"]/g;
                     let match;
