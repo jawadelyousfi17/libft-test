@@ -190,8 +190,33 @@ async function begin() {
     async function start(command) {
         exec(command, (error, stdout, stderr) => {
             if (error) {
-                console.log("⚠️ An error occurred:");
-                console.error(`Error executing command: ${error.message}`);
+                console.log("⚠️ Can't compile");
+                if (error.message.includes("undefined reference to")) {
+                    const regex = /undefined reference to [`'"]([^`'"]+)['"]/g;
+                    let match;
+                    const missingFunctions = [];
+                    while ((match = regex.exec(stderr)) !== null) {
+                        missingFunctions.push(match[1]);
+                    }
+                    let missingFnames = '';
+                    function removeDuplicates(arr) {
+                        return arr.filter((item,
+                            index) => arr.indexOf(item) === index);
+                    }
+                    if (missingFunctions) {
+                        const missingFunctionsWithoutDuplicate = removeDuplicates(missingFunctions)
+                        missingFunctionsWithoutDuplicate.forEach(fn => {
+                            missingFnames += fn + ' '
+                        })
+                    }
+                    console.log("Error: Undefined references to the following functions:");
+                    console.log(red, missingFnames, reset)
+                    console.log("Please include these functions in your C files.");
+                    console.log("Or use the '-l' flag to link the additional functions required.");
+                    console.log(`For example : ${cyan} libftu -f ${args.f[0]} ${yellow} -l ${missingFnames} ${reset}`);
+    
+                } else
+                    console.error(`Error executing command: ${error.message}`);
                 return;
             }
 
