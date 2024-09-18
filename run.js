@@ -7,7 +7,7 @@ const { isLibbsdInstalled, printInstallationInstructions, ensureTrailingSlash } 
 const { getParams } = require("./get_args")
 const { update_git } = require("./update")
 const { draw_done, draw_intro } = require('./ascii_drawing')
-const {checkFiles} = require("./check_files")
+const { checkFiles } = require("./check_files")
 const os = require('os');
 
 //working directory
@@ -32,12 +32,11 @@ if (args.update) {
     console.log(blue, "\rUpdating...")
     update_git((err) => process.exit(err));
 }
-else if (args.check){
+else if (args.check) {
     console.log(blue, "\rChecking files...");
     checkFiles().then((err) => {
-        if(!err)
-        {
-            console.log(green,'\r✅ All files exist',reset)
+        if (!err) {
+            console.log(green, '\r✅ All files exist', reset)
         }
     })
 } else {
@@ -151,7 +150,7 @@ async function begin() {
 
     //check args
     if (!args.f) {
-        console.log(yellow,`\r❌ Error: Invalid args!${reset}
+        console.log(yellow, `\r❌ Error: Invalid args!${reset}
     Try this  intsted
     Valid : testf -f ft_strlen  [ or any function name ]
     valid : testf -f all
